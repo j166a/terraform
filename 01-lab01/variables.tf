@@ -20,3 +20,9 @@ variable "ssh_cidr" {
   description = "CIDR block for SSH access"
   type        = string
 }
+
+variable "http_cidr" {
+  description = "CIDR block for HTTP access"
+  type        = string
+  default     = "0.0.0.0/0"
+}
