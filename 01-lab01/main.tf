@@ -1,5 +1,20 @@
+data "aws_ami" "amazon_linux" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["al2023-ami-2023.*-x86_64"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
 resource "aws_instance" "wordpress" {
-  ami           = "ami-0bf5d5d5c92a17e24"
+  ami           = data.aws_ami.amazon_linux.id
   instance_type = var.instance_type
   key_name      = var.key_name
 
@@ -25,10 +40,11 @@ resource "aws_security_group" "wordpress" {
   }
 
   ingress {
+    description = "Allow SSH access"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["38.126.87.104/32"]
+    cidr_blocks = [var.ssh_cidr]
   }
 
   egress {
