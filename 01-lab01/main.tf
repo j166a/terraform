@@ -2,6 +2,7 @@ resource "aws_instance" "wordpress" {
   ami           = "ami-0bf5d5d5c92a17e24"
   instance_type = var.instance_type
 
+vpc_security_group_ids = [aws_security_group.wordpress.id]
   tags = {
     Name = "wordpress"
   }
