@@ -1,0 +1,1 @@
+ssh_cidr = "YOUR.PUBLIC.IP.ADDRESS/32"
