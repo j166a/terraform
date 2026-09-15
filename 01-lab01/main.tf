@@ -3,12 +3,12 @@ resource "aws_instance" "wordpress" {
   instance_type = var.instance_type
 
   tags = {
-    Name = "WordPressInstance"
+    Name = "wordpress"
   }
 }
 
-resource "aws_security_group" "wordpress_sg" {
-  name        = "wordpress_sg"
+resource "aws_security_group" "wordpress" {
+  name        = "wordpress-sg"
   description = "Allow HTTP traffic to WordPress instance"
 
   ingress {
@@ -23,5 +23,9 @@ resource "aws_security_group" "wordpress_sg" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "wordpress-sg"
   }
 }
