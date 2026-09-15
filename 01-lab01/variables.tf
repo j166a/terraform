@@ -13,7 +13,6 @@ variable "aws_region" {
 variable "key_name" {
   description = "Name of the SSH key pair to use for the instance"
   type        = string
-  default     = "ec2-demo-vpc"
 }
 
 variable "ssh_cidr" {
