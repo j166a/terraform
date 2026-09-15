@@ -1,6 +1,7 @@
 resource "aws_instance" "wordpress" {
   ami           = "ami-0bf5d5d5c92a17e24"
   instance_type = var.instance_type
+  key_name      = var.key_name
 
   vpc_security_group_ids = [aws_security_group.wordpress.id]
 
@@ -21,6 +22,13 @@ resource "aws_security_group" "wordpress" {
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["38.126.87.104/32"]
   }
 
   egress {
