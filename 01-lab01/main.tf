@@ -30,7 +30,7 @@ resource "aws_instance" "wordpress" {
 
 resource "aws_security_group" "wordpress" {
   name        = "wordpress-sg"
-  description = "Allow HTTP traffic to WordPress instance"
+  description = "Allow HTTP and restricted SSH access to WordPress instance"
 
   ingress {
     from_port   = 80
